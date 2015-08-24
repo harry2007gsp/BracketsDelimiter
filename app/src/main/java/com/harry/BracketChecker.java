@@ -44,7 +44,7 @@ public class BracketChecker {
             Log.d("test", "Error: missing right delimiter");
         }
     }
-    public void check1() {
+    public boolean check1() {
         int stackSize = input.length();
         StackBracket stackBracket = new StackBracket(stackSize);
         for (int i = 0; i < stackSize; i++) {
@@ -62,13 +62,10 @@ public class BracketChecker {
                     if (!stackBracket.isEmpty()) {
                         char chx = stackBracket.pop();
                         if ((ch == '}' && chx != '{') || (ch == ']' && chx != '[') || (ch == ')' && chx != '(')) {
-                            Log.d("test", "Error: " + ch + " at " + i);
-                            break;
-                        } else {
-                            Log.d("test", "Error: " + ch + " at " + i);
-                            break;
+                            return false;
                         }
                     }
+                    break;
                 default:
                     break;
             }
@@ -76,6 +73,7 @@ public class BracketChecker {
         if (!stackBracket.isEmpty()) {
             Log.d("test", "Error: missing right delimiter");
         }
+        return true;
     }
 
 }
